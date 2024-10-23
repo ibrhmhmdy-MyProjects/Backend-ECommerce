@@ -1,7 +1,8 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
-
+// Route::UserSide
 Route::get('/', function () {
     return view('welcome');
 });
@@ -16,7 +17,5 @@ Route::middleware([
     })->name('dashboard');
 });
 
-// Route::AdminPanel Side
-Route::get('/admin/dashboard',function(){
-    return view('admin.index');
-});
+// Route::AdminSide
+Route::get('/admin/dashboard',[DashboardController::class,'index'])->name('adminDashboard');
