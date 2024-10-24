@@ -19,11 +19,15 @@ Route::middleware([
 });
 
 // Route::AdminSide
-Route::get('/admin/dashboard',[DashboardController::class,'index'])->name('DashboardAdmin');
-Route::get('/admin/products/index',[ProductsController::class,'index'])->name('IndexProducts');
-Route::get('/admin/products/create',[ProductsController::class,'create'])->name('CreateProduct');
-Route::post('/admin/products/store',[ProductsController::class,'store'])->name('StoreProduct');
-Route::get('/admin/products/edit/{id}',[ProductsController::class,'edit'])->name('EditProduct');
-Route::put('/admin/products/update/{id}',[ProductsController::class,'update'])->name('UpdateProduct');
-Route::get('/admin/products/delete/{id}',[ProductsController::class,'destroy'])->name('DeleteProduct');
-Route::get('/admin/products/show/{id}',[ProductsController::class,'show'])->name('ShowProduct');
+Route::middleware(['auth','isAdmin'])->group(function(){
+    Route::get('/admin/dashboard',[DashboardController::class,'index'])->name('DashboardAdmin');
+    Route::controller(ProductsController::class)->group(function() {
+        Route::get('/admin/products/index','index')->name('IndexProducts');
+        Route::get('/admin/products/create','create')->name('CreateProduct');
+        Route::post('/admin/products/store','store')->name('StoreProduct');
+        Route::get('/admin/products/edit/{id}','edit')->name('EditProduct');
+        Route::put('/admin/products/update/{id}','update')->name('UpdateProduct');
+        Route::get('/admin/products/delete/{id}','destroy')->name('DeleteProduct');
+        Route::get('/admin/products/show/{id}','show')->name('ShowProduct');
+    });
+});
