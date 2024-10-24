@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name', 255);
             $table->text('desc',255);
-            $table->decimal('price',2);
+            $table->float('price',2);
             $table->integer('quantity')->default(1);
             $table->string('image')->nullable();
             $table->timestamps();
