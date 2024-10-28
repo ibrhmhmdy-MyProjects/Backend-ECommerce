@@ -23,11 +23,6 @@ use Illuminate\Support\Facades\Route;
     Route::middleware('AuthApiToken')->group(function(){
         Route::controller(ProductsApiController::class)->group(function() {
             Route::get('/user/products/index','index')->name('IndexProducts');
-            Route::get('/user/products/create','create')->name('CreateProduct');
-            Route::post('/user/products/store','store')->name('StoreProduct');
-            Route::get('/user/products/edit/{id}','edit')->name('EditProduct');
-            Route::put('/user/products/update/{id}','update')->name('UpdateProduct');
-            Route::get('/user/products/delete/{id}','destroy')->name('DeleteProduct');
             Route::get('/user/products/show/{id}','show')->name('ShowProduct');
         });
     });

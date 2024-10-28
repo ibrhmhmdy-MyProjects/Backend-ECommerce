@@ -1,24 +1,23 @@
 <?php
 
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\HomeControllers;
 use App\Http\Controllers\ProductsController;
 use Illuminate\Support\Facades\Route;
-// Route::UserSide
+/********** Route::UserSide **********/
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/home', [HomeControllers::class,'index'])->name('UserIndex');
 
-Route::middleware([
-    'auth:sanctum',
-    config('jetstream.auth_session'),
-    'verified',
-])->group(function () {
+Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified',])->group(function () {
+    Route::get('users/index',[ProductsController::class,'index'])->name('indexUser');
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
 });
 
-// Route::AdminSide
+/********** Route::AdminSide **********/
 Route::middleware(['auth','isAdmin'])->group(function(){
     Route::get('/admin/dashboard',[DashboardController::class,'index'])->name('DashboardAdmin');
     Route::controller(ProductsController::class)->group(function() {
