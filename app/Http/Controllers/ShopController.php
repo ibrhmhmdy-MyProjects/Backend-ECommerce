@@ -16,4 +16,8 @@ class ShopController extends Controller
         $product = Product::findOrFail($id);
         return \view('users.products.details',\compact('product'));
     }
+
+    public function addToCart(){
+        return \view('users.orders.carts');
+    }
 }

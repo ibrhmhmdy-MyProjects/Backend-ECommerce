@@ -8,8 +8,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/home', [ShopController::class,'index'])->name('UserIndex');
+Route::get('/home', [ShopController::class,'index'])->name('UsersIndex');
 Route::get('/product/details/{id}', [ShopController::class,'ProductDetails'])->name('ProductDetails');
+Route::get('/product/cart/{id}', [ShopController::class,'addToCart'])->name('AddToCart');
 
 Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified',])->group(function () {
     Route::get('users/index',[ProductsController::class,'index'])->name('indexUser');

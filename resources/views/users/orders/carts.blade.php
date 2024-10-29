@@ -1,3 +1,6 @@
+@extends('users.layouts.master')
+@section('title','Product Details')
+@section('content')
 <!-- Breadcrumb Start -->
 <div class="container-fluid">
   <div class="row px-xl-5">
@@ -168,3 +171,4 @@
   </div>
 </div>
 <!-- Cart End -->
+@endsection

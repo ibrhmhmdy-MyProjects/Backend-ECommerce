@@ -11,10 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('orders', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('user_id')->constrained()->onUpdate()->onDelete();
-            $table->timestamps();
+        Schema::table('orders_details', function (Blueprint $table) {
+            $table->decimal('price',8,2)->change();
+            $table->decimal('total',8,2)->change();
         });
     }
 
@@ -23,6 +22,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('orders');
+        Schema::table('orders_details', function (Blueprint $table) {
+            //
+        });
     }
 };
