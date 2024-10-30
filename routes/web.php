@@ -1,15 +1,22 @@
 <?php
 
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductsController;
 use Illuminate\Support\Facades\Route;
 /********** Route::UserSide **********/
+Route::controller(HomeController::class)->group(function(){
+    Route::get('/','index')->name('Home');
+    Route::get('/single-product/{id}','SingleProduct')->name('SingleProduct');
+});
+Route::controller(CartController::class)->group(function(){
+    Route::get('add-to-cart/{id}','addToCart')->name('addToCart');
+    Route::get('shopping-cart','index')->name('ShoppingCart');
+    Route::get('empty-cart','emptyCart')->name('EmptyCart');
+    Route::get('update-quantity/{id}/{action}','updateQuantity')->name('UpdateQuantity');
+});
 
-Route::get('/', [HomeController::class,'index'])->name('Home');
-Route::get('/single-product/{id}', [ProductsController::class,'SingleProduct'])->name('SingleProduct');
-Route::get('/product/cart/{id}', [HomeController::class,'addToCart'])->name('AddToCart');
-Route::get('/product/cart/{id}', [HomeController::class,'addToCart'])->name('AddToCart');
 
 Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified',])->group(function () {
     Route::get('/dashboard', function () {
