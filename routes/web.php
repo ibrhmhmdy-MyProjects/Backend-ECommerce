@@ -1,22 +1,25 @@
 <?php
 
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductsController;
-use App\Http\Controllers\ShopController;
 use Illuminate\Support\Facades\Route;
 /********** Route::UserSide **********/
-Route::get('/', function () {
-    return view('welcome');
-});
-Route::get('/home', [ShopController::class,'index'])->name('UsersIndex');
-Route::get('/product/details/{id}', [ShopController::class,'ProductDetails'])->name('ProductDetails');
-Route::get('/product/cart/{id}', [ShopController::class,'addToCart'])->name('AddToCart');
+
+Route::get('/', [HomeController::class,'index'])->name('Home');
+Route::get('/single-product/{id}', [ProductsController::class,'SingleProduct'])->name('SingleProduct');
+Route::get('/product/cart/{id}', [HomeController::class,'addToCart'])->name('AddToCart');
+Route::get('/product/cart/{id}', [HomeController::class,'addToCart'])->name('AddToCart');
 
 Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified',])->group(function () {
-    Route::get('users/index',[ProductsController::class,'index'])->name('indexUser');
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
+});
+Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified',])->group(function () {
+    Route::get('admin/index', function () {
+        return view('admin.index');
+    });
 });
 
 /********** Route::AdminSide **********/

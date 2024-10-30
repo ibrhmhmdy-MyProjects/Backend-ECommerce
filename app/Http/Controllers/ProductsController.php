@@ -16,7 +16,10 @@ class ProductsController extends Controller
         $products = Product::all();
         return \view('admin.Products.index',compact('products'));
     }
-
+    public function SingleProduct($id){
+        $product = Product::findOrFail($id);
+        return \view('users.SingleProduct',['product'=>$product]);
+    }
     /**
      * Show the form for creating a new resource.
      */

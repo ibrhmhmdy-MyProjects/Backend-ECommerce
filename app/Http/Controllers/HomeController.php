@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
-class ShopController extends Controller
+class HomeController extends Controller
 {
     public function index(){
         $products = Product::all();
@@ -13,7 +13,7 @@ class ShopController extends Controller
     }
 
     public function ProductDetails($id){
-        $product = Product::findOrFail($id);
+        $product = Product::findOrFails($id);
         return \view('users.products.details',\compact('product'));
     }
 

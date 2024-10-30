@@ -22,8 +22,8 @@ use Illuminate\Support\Facades\Route;
     });
     Route::middleware('AuthApiToken')->group(function(){
         Route::controller(ProductsApiController::class)->group(function() {
-            Route::get('/user/products/index','index')->name('IndexProducts');
-            Route::get('/user/products/show/{id}','show')->name('ShowProduct');
+            Route::get('/products/index','index')->name('IndexProducts');
+            Route::get('/products/show/{id}','show')->name('ShowProduct');
         });
     });
     Route::controller(AuthApiController::class)->group(function(){

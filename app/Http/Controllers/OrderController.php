@@ -65,7 +65,7 @@ class OrderController extends Controller
     }
     
     public function PlaceOrder(Order $order){
-        $order->user_id = Auth::user()->id;
+        
         
     }
 }

@@ -19,6 +19,6 @@ class isAdmin
         if(Auth::user()->role == 'admin'){
             return $next($request);
         }
-        return \redirect('/dashboard');
+        return \redirect('dashboard');
     }
 }
