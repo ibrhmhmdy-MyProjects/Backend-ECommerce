@@ -3,6 +3,7 @@
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductsController;
 use Illuminate\Support\Facades\Route;
 /********** Route::UserSide **********/
@@ -15,6 +16,10 @@ Route::controller(CartController::class)->group(function(){
     Route::get('shopping-cart','index')->name('ShoppingCart');
     Route::get('empty-cart','emptyCart')->name('EmptyCart');
     Route::get('update-quantity/{id}/{action}','updateQuantity')->name('UpdateQuantity');
+    Route::get('remove-product/{id}','RemoveProduct')->name('RemoveProduct');
+});
+Route::controller(OrderController::class)->group(function(){
+    Route::post('make-order','MakeOrder')->name('MakeOrder');
 });
 
 

@@ -64,12 +64,14 @@ class CartController extends Controller
         return redirect()->back()->with('success','Your Cart is Empty');
     }
 
-    
-
-    public function RemoveItem($id){
-        $cart = session()->get('cart');
-        if($cart[$id]){
+    public function RemoveProduct($id){
+        $cart = session()->get('cart', []);
+        if (isset($cart[$id])) {
             unset($cart[$id]);
+            session()->put('cart', $cart);
         }
+        $cart = session()->get('cart',[]);
+        $subtotal = array_sum(array_column($cart, 'totalPrice'));
+        return \view('users.ShoppingCart',compact('cart','subtotal'));
     }
 }
