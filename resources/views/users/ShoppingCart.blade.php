@@ -57,7 +57,7 @@
                             </div>
                         </div>
                     </td>
-                    <td class="align-middle">${{$product['qty'] * $product['price']}}</td>
+                    <td class="align-middle">${{$product['totalPrice']}}</td>
                     <td class="align-middle"><button class="btn btn-sm btn-danger"><i class="fa fa-times"></i></button></td>
                 </tr>
                 @endforeach
@@ -86,22 +86,24 @@
           <div class="bg-light p-30 mb-5">
               <div class="border-bottom pb-2">
                   <div class="d-flex justify-content-between mb-3">
-                      <h6>Subtotal</h6>
-                      <h6>${{$subtotal}}</h6>
+                      <h6>SubTotal</h6>
+                      <h6>
+                        ${{$subtotal}}
+                    </h6>
                   </div>
                   <div class="d-flex justify-content-between">
                       <h6 class="font-weight-medium">Shipping</h6>
-                      <h6 class="font-weight-medium">$10</h6>
+                      <h6 class="font-weight-medium">$20</h6>
                   </div>
               </div>
               <div class="pt-2">
                   <div class="d-flex justify-content-between mt-2">
                       <h5>Total</h5>
                       <h5>
-                        @if ($subtotal)
-                            ${{$subtotal + 10}}
-                        @else 
+                        @if (!$subtotal)
                             $0 
+                        @else 
+                            ${{$subtotal + 20}}
                         @endif
                       </h5>
                   </div>

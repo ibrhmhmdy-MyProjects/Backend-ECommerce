@@ -25,10 +25,10 @@ class AppServiceProvider extends ServiceProvider
             $productCount = array_sum(array_column($cart, 'qty'));
             $view->with('productCount', $productCount);
         });
-        View::composer('*', function ($view) {
-            $cart = session()->get('cart',[]);
-            $subtotal = array_sum(array_column($cart, 'total'));
-            $view->with('subtotal', $subtotal);
-        });
+        // View::composer('*', function ($view) {
+        //     $cart = session()->get('cart',[]);
+        //     $subtotal = array_sum(array_column($cart, 'totalPrice'));
+        //     $view->with('subtotal', $subtotal);
+        // });
     }
 }
